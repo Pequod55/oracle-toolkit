@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Check modified patchlist
-      run:
+      run: |
         if [[ `git status --porcelain modify_patchlist.yaml` ]]; then
           echo "Modified patchlist detected, proceeding with modifications."
         else
