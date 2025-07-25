@@ -1,2 +1,2 @@
 rdbms_patches:
-  - { category: "RU_Combo", base: "19.3.0.0.0", release: "19.28.0.0.251046", patchnum: "37952396", patchfile: "p37952396_190000_Linux-x86-64.zip", patch_subdir: "/37952396", prereq_check: true, method: "opatch apply", ocm: false, upgrade: true, md5sum: "GL89d7Hnfe444G0kVCgcwSw==" }
+  - { category: "RU_Combo", base: "19.3.0.0.0", release: "19.28.0.0.251046", patchnum: "37952396", patchfile: "p37952396_190000_Linux-x86-642.zip", patch_subdir: "/37952396", prereq_check: true, method: "opatch apply", ocm: false, upgrade: true, md5sum: "GL89d7Hnfe444G0kVCgcwSw==" }
