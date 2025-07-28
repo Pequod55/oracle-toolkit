@@ -39,7 +39,7 @@ commit_and_push() {
     if [[ $(git status --porcelain) ]]; then
         configure_git
         git add .
-        git commit -m "automation: Update files"
+        git commit -m "automation: Update patch files"
         git push
         echo "Changes pushed successfully."
     fi

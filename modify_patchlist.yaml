@@ -65,3 +65,8 @@ documentation_overrides:
     category: ""
     software_piece: ""
     file_name: "" 
+
+  rdbms_patches:
+    category: ""
+    software_piece: ""
+    file_name: ""
