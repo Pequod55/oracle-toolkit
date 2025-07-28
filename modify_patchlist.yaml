@@ -1,3 +1,6 @@
+# Patch update section
+# This section contains the latest patch updates for Oracle software.
+# It includes details about the software, patches, and their respective files.
 gi_software:
   - name: 21c_gi
     version: 21.3.0.0.0
@@ -33,3 +36,32 @@ gi_patches:
 rdbms_patches:
   - { category: "RU", base: "21.3.0.0.0", release: "21.17.0.0.0", patchnum: "37350281", patchfile: "p37350281_210000_Linux-x86-64.zip", patch_subdir: "/", prereq_check: false, method: "opatch apply", ocm: false, upgrade: false, md5sum: "dQjBqlXWOumEZU3QAJzD9Q==" }
   - { category: "RU", base: "21.3.0.0.0", release: "21.18.0.0.0", patchnum: "37655430", patchfile: "p37655430_210000_Linux-x86-64.zip", patch_subdir: "/", prereq_check: false, method: "opatch apply", ocm: false, upgrade: false, md5sum: "4JhJvWSOeDMYUIupR0jFZA==" }
+
+# Optional documentation overrides
+# This section allows you to override documentation entries for specific software pieces.
+# If a software piece is not listed here, it will use the default documentation entry.
+documentation_overrides:
+  gi_software:
+    category: ""
+    software_piece: ""
+    file_name: ""
+
+  rdbms_software:
+    category: ""
+    software_piece: ""
+    file_name: ""
+
+  opatch_patches:
+    category: ""
+    software_piece: ""
+    file_name: "" 
+
+  gi_interim_patches:
+    category: ""
+    software_piece: ""
+    file_name: ""
+
+  gi_patches:
+    category: ""
+    software_piece: ""
+    file_name: "" 
