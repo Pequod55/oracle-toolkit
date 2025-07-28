@@ -278,18 +278,13 @@ def gi_interim_compile_patch(gi_interim_patches):
 def gi_interim_insert_patch(gi_interim_patches, output_yml):
     read_yml = open(output_yml, 'r')
     lines = read_yml.readlines()
-    gi_interim_start = False
+
     for i, line in enumerate(lines):
         if line.strip() == 'gi_interim_patches:':
-            gi_interim_start = True
-            
-        if gi_interim_start:
-            # Insert the patch after the 'gi_interim_patches:' line
-            if line.strip() == "":
-                for gi_interim_patch in gi_interim_patches:
-                    # Insert the patch after the 'gi_interim_patches:' line
-                    lines.insert(i, gi_interim_patch + "\n")
-                break
+            for gi_interim_patch in gi_interim_patches:
+                # Insert the patch after the 'gi_interim_patches:' line
+                lines.insert(i+1, gi_interim_patch + "\n")
+            break
 
     with open(output_yml, 'w') as file:
         file.writelines(lines)
@@ -346,11 +341,11 @@ def rdbms_software_compile_patch(rdbms_software):
         files = each_patch['files']
 
         if isinstance(edition, list):
-            patch = "  - name: {0}\n    version: {1}\n    editions:\n".format(name, version)
+            patch = "  - name: {0}\n    version: {1}\n    edition:\n".format(name, version)
             patch += "\n".join(["      - {0}".format(e.strip()) for e in edition])
             patch += "\n    files:"
         else:
-            patch = "  - name: {0}\n    version: {1}\n    editions: {2}\n    files:".format(name, version, edition.strip())
+            patch = "  - name: {0}\n    version: {1}\n    edition: {2}\n    files:".format(name, version, edition.strip())
 
         for file in files:
             patch += "\n      - {{ name: \"{0}\", sha256sum: \"{1}\", md5sum: \"{2}\" }}".format(
@@ -623,7 +618,29 @@ def rdbms_patches_insert_patch(rdbms_patches, output_yml):
     idx = rdbms_patch_start
 
     for patch in rdbms_patches:
-        while idx < rdbms_patch_end:
+        while idx < rdbms_patch_end+1:
+            if category_base_match_found and idx == rdbms_patch_end or category_base_match_found and lines[idx].strip() == "":
+                # Insert the patch at the previous index
+                lines.insert(idx, "  - {{ category: \"{category}\", base: \"{base}\", release: \"{release}\", patchnum: \"{patchnum}\", patchfile: \"{patchfile}\", patch_subdir: \"{patch_subdir}\", prereq_check: {prereq_check}, method: \"{method}\", ocm: {ocm}, upgrade: {upgrade}, md5sum: \"{md5sum}\" }}\n".format(
+                        category=patch['category'].strip(),
+                        base=patch['base'].strip(),
+                        release=patch['release'].strip(),
+                        patchnum=patch['patchnum'].strip(),
+                        patchfile=patch['patchfile'].strip(),
+                        patch_subdir=patch['patch_subdir'].strip(),
+                        prereq_check=str(patch['prereq_check']).lower(),
+                        method=patch['method'].strip(),
+                        ocm=str(patch['ocm']).lower(),
+                        upgrade=str(patch['upgrade']).lower(),
+                        md5sum=patch['md5sum'].strip(),
+                    ))
+                print("Inserted RDBMS patch at line {0}.\n\n".format(idx + 1))
+                category_match_found = False
+                category_base_match_found = False
+                idx = rdbms_patch_start
+                rdbms_patch_end += 1
+                break
+
             if category_base_match_found is False and lines[idx].strip() == "":
                 print("Error: Empty line found in rdbms_patches block.\n\n")
                 return
@@ -644,31 +661,8 @@ def rdbms_patches_insert_patch(rdbms_patches, output_yml):
             if line != None and category_match_found and line[0]['base'] == patch['base'].strip():
                 category_base_match_found = True
             
-            if category_base_match_found and lines[idx].strip() == "" or category_base_match_found and lines[idx].startswith('#') or category_base_match_found and lines[idx].strip() == "":
-                # Insert the patch at the current index
-                lines.insert(idx, "  - {{ category: \"{category}\", base: \"{base}\", release: \"{release}\", patchnum: \"{patchnum}\", patchfile: \"{patchfile}\", patch_subdir: \"{patch_subdir}\", prereq_check: {prereq_check}, method: \"{method}\", ocm: {ocm}, upgrade: {upgrade}, md5sum: \"{md5sum}\" }}\n".format(
-                        category=patch['category'].strip(),
-                        base=patch['base'].strip(),
-                        release=patch['release'].strip(),
-                        patchnum=patch['patchnum'].strip(),
-                        patchfile=patch['patchfile'].strip(),
-                        patch_subdir=patch['patch_subdir'].strip(),
-                        prereq_check=str(patch['prereq_check']).lower(),
-                        method=patch['method'].strip(),
-                        ocm=str(patch['ocm']).lower(),
-                        upgrade=str(patch['upgrade']).lower(),
-                        md5sum=patch['md5sum'].strip(),
-                    ))
-                print("Inserted RDBMS patch at line {0}.\n\n".format(idx + 1))
-                category_match_found = False
-                category_base_match_found = False
-                idx = rdbms_patch_start
-                break
-
             idx += 1
-            if idx == rdbms_patch_end:
-                print("Error: Reached end of rdbms_patches block without finding a match.\n\n")
-                return
+            print(idx, category_base_match_found)
 
         with open(output_yml, 'w') as file:
             file.writelines(lines)
