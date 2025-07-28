@@ -2,6 +2,7 @@ import yaml
 import sys, os
 import re
 import pathlib
+from pprint import pprint
 
 
 def load_yaml(file_path):
@@ -673,15 +674,22 @@ def rdbms_patches_insert_patch(rdbms_patches, output_yml):
             file.writelines(lines)
     print("RDBMS patches patch inserted successfully.\n\n")
 
+def comment_after_completed_patch(input_yml):
+    with open(input_yml, 'r') as file:
+        lines = file.readlines()
+
+    for i, line in enumerate(lines):
+        if line.strip() == 'gi_software:' or line.strip() == 'gi_interim_patches:' or line.strip() == 'rdbms_software:' or line.strip() == 'opatch_patches:' or line.strip() == 'gi_patches:' or line.strip() == 'rdbms_patches:' or line.strip() == 'documentation_overrides:' or line.strip() == '':
+            continue
+        if line.strip().startswith('#'):
+            continue
+        else:
+            lines[i] = "# " + lines[i]
+    with open(input_yml, 'w') as file:
+        file.writelines(lines)
+    print("Comment added after completed patches.\n\n")
 
 def main():
-    # # the root of the git repo
-    # dir_path = pathlib.Path(__file__).parent.parent.parent
-
-    # input_yml = dir_path / 'version_upgrade.yaml'
-    # output_yml = dir_path / 'roles/common/defaults/main.yml'
-    # patch_data = load_yaml(input_yml)
-
     dir_path = pathlib.Path(__file__).parent.parent.parent
     input_yml = os.path.join(dir_path, 'modify_patchlist.yaml')
     output_yml = os.path.join(dir_path, 'roles/common/defaults/main.yml')
@@ -721,6 +729,8 @@ def main():
         rdbms_patch_search_duplicates(patch_data['rdbms_patches'], output_yml)
         rdbms_patches_insert_patch(patch_data['rdbms_patches'], output_yml)
 
+    comment_after_completed_patch(input_yml)
+    
 if __name__ == "__main__":
     main()
 
