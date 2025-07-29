@@ -2,7 +2,6 @@ import yaml
 import sys, os
 import re
 import pathlib
-from pprint import pprint
 
 
 def load_yaml(file_path):
