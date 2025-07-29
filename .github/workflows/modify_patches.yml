@@ -26,7 +26,7 @@ jobs:
     - name: Change patch files
       run: python .github/workflows/modify_patches.py
     - name: Change documentation files
-      run: python ./github/workflows/modify_documentation.py
+      run: python .github/workflows/modify_documentation.py
     - name: Commit changes
       run: |
         bash .github/workflows/commit_patches.bash
