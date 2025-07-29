@@ -154,8 +154,8 @@ rdbms_software:
     version: 23.8.0.25.04
     edition: FREE
     files:
-      - { name: "oracle-database-preinstall-23ai-1.0-2.el8.x86_64.rpm", sha256sum: "4578e6d1cf566e04541e0216b07a0372725726a7c339423ee560255cb918138b", md5sum: "TmjqUT878Owv7NbXGECpTA=="}
-      - { name: "oracle-database-free-23ai-23.8-1.el8.x86_64.rpm", sha256sum: "cd0d16939150e6ec5e70999a762a13687bfa99b05c4f310593e7ca3892e1d0ce", md5sum: "hkL/hxeYbB7z5lz+3r3kww=="}
+      - { name: "oracle-database-preinstall-23ai-1.0-2.el8.x86_64.rpm", sha256sum: "4578e6d1cf566e04541e0216b07a0372725726a7c339423ee560255cb918138b", md5sum: "TmjqUT878Owv7NbXGECpTA==" }
+      - { name: "oracle-database-free-23ai-23.8-1.el8.x86_64.rpm", sha256sum: "cd0d16939150e6ec5e70999a762a13687bfa99b05c4f310593e7ca3892e1d0ce", md5sum: "hkL/hxeYbB7z5lz+3r3kww==" }
   - name: 23ai_free_23_7
     version: 23.7.0.25.01
     edition: FREE
