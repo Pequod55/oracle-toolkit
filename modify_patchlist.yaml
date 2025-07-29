@@ -37,14 +37,14 @@ opatch_patches:
   - { category: "OPatch", release: "21.3.0.0.0", patchnum: "6880880", patchfile: "p6880880_210000_Linux-x86-64.zip", md5sum: "" }
 
 gi_interim_patches:
+#   Lists any one-off interim patches for Grid Infrastructure that need to be
+#   applied separately from the main Release Update (RU).
   - category: "HAS_interim_patch"
     version: 12.2.0.1.0
     patchnum: "25078431"
     patchutil: "gridsetup"
     files:
       - { name: "p25078431_122010_Linux-x86-64.zip", sha256sum: "FA056EBD0FE0AD134F2B5C53F0DDF6F6A5DC73C7AE40DAEF18D0629850149525", md5sum: "hK1WOGC1g/3QUryg3MM5OQ==" }
-#   Lists any one-off interim patches for Grid Infrastructure that need to be
-#   applied separately from the main Release Update (RU).
 
 gi_patches:
 #   Defines the cumulative patches, such as Release Updates (RU), for

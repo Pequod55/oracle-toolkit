@@ -865,7 +865,6 @@ def rdbms_patches_insert_patch(rdbms_patches, output_yml):
                 category_base_match_found = True
             
             idx += 1
-            print(idx, category_base_match_found)
 
         # Write the updated lines back to the file
         with open(output_yml, 'w') as file:
@@ -884,7 +883,7 @@ def comment_after_completed_patch(input_yml):
 
     # Iterate through lines and comment them out, skipping section headers and empty lines
     for i, line in enumerate(lines):
-        if line.strip() == 'gi_software:' or line.strip() == 'gi_interim_patches:' or line.strip() == 'rdbms_software:' or line.strip() == 'opatch_patches:' or line.strip() == 'gi_patches:' or line.strip() == 'rdbms_patches:' or line.strip() == 'documentation_overrides:' or line.strip() == '':
+        if line.strip() == 'gi_software:' or line.strip() == 'gi_interim_patches:' or line.strip() == 'rdbms_software:' or line.strip() == 'opatch_patches:' or line.strip() == 'gi_patches:' or line.strip() == 'rdbms_patches:' or line.strip() == 'documentation_overrides:' or line.strip().startswith("skip_docs_update") or line.strip() == '':
             continue
         if line.strip().startswith('#'):
             continue
