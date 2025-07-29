@@ -699,29 +699,47 @@ def main():
         print("No patch data found in the YAML file.\n\n")
         sys.exit(1)
     
-    if patch_data.get('gi_software') is not None:
-        gi_software_search_duplicates(patch_data['gi_software'], output_yml)
-        gi_software_insert_patch(gi_software_compile_patch(patch_data['gi_software']), output_yml)
+    try: 
+        if patch_data.get('gi_software') is not None:
+            gi_software_search_duplicates(patch_data['gi_software'], output_yml)
+            gi_software_insert_patch(gi_software_compile_patch(patch_data['gi_software']), output_yml)
+    except KeyError:
+        print("No 'gi_software' key found in the YAML file. Skipping GI software patch insertion.\n\n")
 
-    if patch_data.get('gi_interim_patches') is not None:
-        gi_interim_search_duplicates(patch_data['gi_interim_patches'], output_yml)
-        gi_interim_insert_patch(gi_interim_compile_patch(patch_data['gi_interim_patches']), output_yml)    
+    try:
+        if patch_data.get('gi_interim_patches') is not None:
+            gi_interim_search_duplicates(patch_data['gi_interim_patches'], output_yml)
+            gi_interim_insert_patch(gi_interim_compile_patch(patch_data['gi_interim_patches']), output_yml)    
+    except KeyError:
+        print("No 'gi_interim_patches' key found in the YAML file. Skipping GI interim patches patch insertion.\n\n")
 
-    if patch_data.get('rdbms_software') is not None:
-        rdbms_software_search_duplicates(patch_data['rdbms_software'], output_yml)
-        rdbms_software_insert_patch(rdbms_software_compile_patch(patch_data['rdbms_software']),output_yml)
+    try:    
+        if patch_data.get('rdbms_software') is not None:
+            rdbms_software_search_duplicates(patch_data['rdbms_software'], output_yml)
+            rdbms_software_insert_patch(rdbms_software_compile_patch(patch_data['rdbms_software']),output_yml)
+    except KeyError:
+        print("No 'rdbms_software' key found in the YAML file. Skipping RDBMS software patch insertion.\n\n")
 
-    if patch_data.get('opatch_patches') is not None:
-        opatch_patch_search_duplicates(patch_data['opatch_patches'], output_yml)
-        opatch_patch_insert_patch(opatch_patch_compile_patch(patch_data['opatch_patches']),output_yml)
+    try:
+        if patch_data.get('opatch_patches') is not None:
+            opatch_patch_search_duplicates(patch_data['opatch_patches'], output_yml)
+            opatch_patch_insert_patch(opatch_patch_compile_patch(patch_data['opatch_patches']),output_yml)
+    except KeyError:
+        print("No 'opatch_patches' key found in the YAML file. Skipping OPatch patches patch insertion.\n\n")
 
-    if patch_data.get('gi_patches') is not None:
-        gi_patch_search_duplicates(patch_data['gi_patches'], output_yml)
-        gi_patches_insert_patch(patch_data['gi_patches'], output_yml)
+    try:
+        if patch_data.get('gi_patches') is not None:
+            gi_patch_search_duplicates(patch_data['gi_patches'], output_yml)
+            gi_patches_insert_patch(patch_data['gi_patches'], output_yml)
+    except KeyError:
+        print("No 'gi_patches' key found in the YAML file. Skipping GI patches patch insertion.\n\n")
 
-    if patch_data.get('rdbms_patches') is not None:
-        rdbms_patch_search_duplicates(patch_data['rdbms_patches'], output_yml)
-        rdbms_patches_insert_patch(patch_data['rdbms_patches'], output_yml)
+    try:
+        if patch_data.get('rdbms_patches') is not None:
+            rdbms_patch_search_duplicates(patch_data['rdbms_patches'], output_yml)
+            rdbms_patches_insert_patch(patch_data['rdbms_patches'], output_yml)
+    except KeyError:
+        print("No 'rdbms_patches' key found in the YAML file. Skipping RDBMS patches patch insertion.\n\n")
 
     comment_after_completed_patch(input_yml)
     
