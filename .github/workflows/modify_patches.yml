@@ -2,11 +2,9 @@ name: Modify Patches
 run-name: Modify Patches
 
 on:
+  # Triggers the workflow on push or pull request events but only for the "master" branch
   pull_request:
-    paths:
-      - '.github/workflows/modify_documentation.py'
-      - '.github/workflows/modify_patches.py'
-      - '/modify_patchlist.yaml'
+    branches: [ "master" ]
   workflow_dispatch:
 
 jobs:
