@@ -633,6 +633,30 @@ Support")</th>
 <td>p37642955_210000_Linux-x86-64.zip</td>
 </tr>
 <tr>
+<td></td>
+<td>Patch - MOS</td>
+<td>Database Release Update 21.17.0.0.0</td>
+<td>p37350281_210000_Linux-x86-64.zip</td>
+</tr>
+<tr>
+<td></td>
+<td>Patch - MOS</td>
+<td>Database Release Update 21.18.0.0.0</td>
+<td>p37655430_210000_Linux-x86-64.zip</td>
+</tr>
+<tr>
+<td></td>
+<td>Patch - MOS</td>
+<td>GI Release Update 21.17.0.0.0</td>
+<td>p37349593_210000_Linux-x86-64.zip</td>
+</tr>
+<tr>
+<td></td>
+<td>Patch - MOS</td>
+<td>GI Release Update 21.18.0.0.0</td>
+<td>p37642955_210000_Linux-x86-64.zip</td>
+</tr>
+<tr>
 <td>19.3.0.0.0</td>
 <td>Base - eDelivery or OTN</td>
 <td>Oracle Database 19.3.0.0.0 for Linux x86-64</td>
