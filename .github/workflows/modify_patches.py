@@ -816,9 +816,9 @@ def rdbms_patches_insert_patch(rdbms_patches, output_yml):
     idx = rdbms_patch_start
 
     for patch in rdbms_patches:
-        while idx < rdbms_patch_end+1:
+        while idx <= rdbms_patch_end:
             # If we found the right group and reached its end, insert the new patch
-            if category_base_match_found and idx == rdbms_patch_end or category_base_match_found and lines[idx].strip() == "":
+            if category_base_match_found and idx == rdbms_patch_end or category_base_match_found and lines[idx].strip() == "" or idx==rdbms_patch_end:
                 # Insert the new patch at the current index
                 lines.insert(idx, "  - {{ category: \"{category}\", base: \"{base}\", release: \"{release}\", patchnum: \"{patchnum}\", patchfile: \"{patchfile}\", patch_subdir: \"{patch_subdir}\", prereq_check: {prereq_check}, method: \"{method}\", ocm: {ocm}, upgrade: {upgrade}, md5sum: \"{md5sum}\" }}\n".format(
                         category=patch['category'].strip(),

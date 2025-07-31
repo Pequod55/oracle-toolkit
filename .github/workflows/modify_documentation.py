@@ -51,19 +51,28 @@ def gi_software_insert_docs(gi_software, overrides, documentation):
             file_names.append(file['alt_name'])
         
         # Use override values from YAML if they exist, otherwise use defaults
-        if overrides['category'] != "":
-            category = overrides['category']
-        else:
+        try:
+            if overrides['category'] != "":
+                category = overrides['category']
+            else:
+                category = "Base - eDelivery or OTN"
+        except:
             category = "Base - eDelivery or OTN"
         
-        if overrides['software_piece'] != "":
-            software_piece = overrides['software_piece']
-        else:
+        try:
+            if overrides['software_piece'] != "":
+                software_piece = overrides['software_piece']
+            else:
+                software_piece = "Oracle Database {0} for Linux x86-64".format(version)
+        except:
             software_piece = "Oracle Database {0} for Linux x86-64".format(version)
         
-        if overrides['file_name'] != "":
-            files = overrides['file_name']
-        else:
+        try:
+            if overrides['file_name'] != "":
+                files = overrides['file_name']
+            else:
+                files = "{0} or {1}".format(file_names[0], file_names[1])
+        except:
             files = "{0} or {1}".format(file_names[0], file_names[1])
 
         # Format the new HTML table row
@@ -107,19 +116,28 @@ def gi_interim_insert_patch(gi_interim_patches, overrides, documentation):
         patchfile = each_patch['files'][0]['name']
         
         # Use override values from YAML if they exist, otherwise use defaults
-        if overrides['category'] != "":
-            category = overrides['category']
-        else:
+        try:
+            if overrides['category'] != "":
+                category = overrides['category']
+            else:
+                category = ""
+        except:
             category = ""
         
-        if overrides['software_piece'] != "":
-            software_piece = overrides['software_piece']
-        else:
+        try:
+            if overrides['software_piece'] != "":
+                software_piece = overrides['software_piece']
+            else:
+                software_piece = "GI Interim Patch"
+        except:
             software_piece = "GI Interim Patch"
         
-        if overrides['file_name'] != "":
-            files = overrides['file_name']
-        else:
+        try:
+            if overrides['file_name'] != "":
+                files = overrides['file_name']
+            else:
+                files = patchfile
+        except:
             files = patchfile
 
         # Format the new HTML table row
@@ -171,19 +189,28 @@ def gi_patches_insert_docs(gi_patches, overrides, documentation):
         patchfile = each_patch['patchfile']
         
         # Use override values from YAML if they exist, otherwise use defaults
-        if overrides['category'] != "":
-            category = overrides['category']
-        else:
+        try:
+            if overrides['category'] != "":
+                category = overrides['category']
+            else:
+                category = "Patch - MOS"
+        except:
             category = "Patch - MOS"
         
-        if overrides['software_piece'] != "":
-            software_piece = overrides['software_piece']
-        else:
+        try:
+            if overrides['software_piece'] != "":
+                software_piece = overrides['software_piece']
+            else:
+                software_piece = "GI Release Update {0}".format(version)
+        except:
             software_piece = "GI Release Update {0}".format(version)
         
-        if overrides['file_name'] != "":
-            files = overrides['file_name']
-        else:
+        try:
+            if overrides['file_name'] != "":
+                files = overrides['file_name']
+            else:
+                files = patchfile
+        except:
             files = patchfile
 
         # Format the new HTML table row
@@ -277,19 +304,28 @@ def rdbms_patches_insert_docs(rdbms_patches, overrides, documentation):
         patchfile = each_patch['patchfile']
         
         # Use override values from YAML if they exist, otherwise use defaults
-        if overrides['category'] != "":
-            category = overrides['category']
-        else:
+        try:
+            if overrides['category'] != "":
+                category = overrides['category']
+            else:
+                category = "Patch - MOS"
+        except:
             category = "Patch - MOS"
         
-        if overrides['software_piece'] != "":
-            software_piece = overrides['software_piece']
-        else:
+        try:
+            if overrides['software_piece'] != "":
+                software_piece = overrides['software_piece']
+            else:
+                software_piece = "Database Release Update {0}".format(version)
+        except:
             software_piece = "Database Release Update {0}".format(version)
         
-        if overrides['file_name'] != "":
-            files = overrides['file_name']
-        else:
+        try:
+            if overrides['file_name'] != "":
+                files = overrides['file_name']
+            else:
+                files = patchfile
+        except:
             files = patchfile
 
         # Format the new HTML table row
@@ -341,19 +377,28 @@ def opatch_insert_patch(opatch_patches, overrides, documentation):
         patchfile = each_patch['patchfile']
         
         # Use override values from YAML if they exist, otherwise use defaults
-        if overrides['category'] != "":
-            category = overrides['category']
-        else:
+        try:
+            if overrides['category'] != "":
+                category = overrides['category']
+            else:
+                category = ""
+        except:
             category = ""
         
-        if overrides['software_piece'] != "":
-            software_piece = overrides['software_piece']
-        else:
+        try:
+            if overrides['software_piece'] != "":
+                software_piece = overrides['software_piece']
+            else:
+                software_piece = "OPatch Utility"
+        except:
             software_piece = "OPatch Utility"
         
-        if overrides['file_name'] != "":
-            files = overrides['file_name']
-        else:
+        try:
+            if overrides['file_name'] != "":
+                files = overrides['file_name']
+            else:
+                files = patchfile
+        except:
             files = patchfile
 
         # Format the new HTML table row
@@ -413,57 +458,50 @@ def main():
         if bool(patch_data['documentation_overrides']['skip_docs_update']):
             print("Skipping documentation update as per configuration.\n\n")
             sys.exit(0)
-    except KeyError:
+    except:
         print("No skip_docs_update key found in documentation_overrides. Proceeding with documentation update.\n\n")
 
     # Process GI software if present in the YAML
     try:
         if patch_data.get('gi_software') is not None:
             documentation = gi_software_insert_docs(patch_data['gi_software'], patch_data["documentation_overrides"]['gi_software'], documentation)
-    except KeyError:
+    except:
         print("No 'gi_software' key found in the YAML file. Skipping GI software patch insertion.\n\n")
 
     # Process RDBMS software if present in the YAML
     try:
         if patch_data.get('rdbms_software') is not None:
             documentation = rdbms_software_insert_docs(patch_data['rdbms_software'], patch_data["documentation_overrides"]['rdbms_software'], documentation)
-    except KeyError:
+    except:
         print("No 'rdbms_software' key found in the YAML file. Skipping RDBMS software patch insertion.\n\n")
 
     # Process OPatch patches if present in the YAML
     try:
         if patch_data.get('opatch_patches') is not None:
             documentation = opatch_insert_patch(patch_data['opatch_patches'], patch_data["documentation_overrides"]['opatch_patches'], documentation)
-    except KeyError:
+    except:
         print("No 'opatch_patches' key found in the YAML file. Skipping OPatch patches insertion.\n\n")
 
     # Process GI interim patches if present in the YAML
     try:
         if patch_data.get('gi_interim_patches') is not None:
             documentation = gi_interim_insert_patch(patch_data['gi_interim_patches'], patch_data["documentation_overrides"]['gi_interim_patches'], documentation)
-    except KeyError:
+    except:
         print("No 'gi_interim_patches' key found in the YAML file. Skipping GI interim patches insertion.\n\n")
 
     # Process RDBMS patches if present in the YAML
     try:
         if patch_data.get('rdbms_patches') is not None:
             documentation = rdbms_patches_insert_docs(patch_data['rdbms_patches'], patch_data["documentation_overrides"]['rdbms_patches'], documentation)
-    except KeyError:
+    except:
         print("No 'rdbms_patches' key found in the YAML file. Skipping RDBMS patches insertion.\n\n")
 
     # Process GI patches if present in the YAML
     try:
         if patch_data.get('gi_patches') is not None:
             documentation = gi_patches_insert_docs(patch_data['gi_patches'], patch_data["documentation_overrides"]['gi_patches'], documentation)
-    except KeyError:
+    except:
         print("No 'gi_patches' key found in the YAML file. Skipping GI patches insertion.\n\n")
-
-    # Process RDBMS patches again (This seems redundant and might be a copy-paste error)
-    try:
-        if patch_data.get('rdbms_patches') is not None:
-            documentation = rdbms_patches_insert_docs(patch_data['rdbms_patches'], patch_data["documentation_overrides"]['rdbms_patches'], documentation)
-    except KeyError:
-        print("No 'rdbms_patches' key found in the YAML file. Skipping RDBMS patches insertion.\n\n")
 
     # Save the modified documentation
     save_md(doc_path, ''.join(documentation))
