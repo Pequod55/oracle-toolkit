@@ -633,6 +633,43 @@ Support")</th>
 <td>p37642955_210000_Linux-x86-64.zip</td>
 </tr>
 <tr>
+<td></td>
+<td>AA</td>
+<td>AA</td>
+<td>AA</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>OPatch Utility</td>
+<td>p6880880_210000_Linux-x86-64.zip</td>
+</tr>
+
+<tr>
+<td></td>
+<td>Patch - MOS</td>
+<td>Database Release Update 21.17.0.0.0</td>
+<td>p37350281_210000_Linux-x86-64.zip</td>
+</tr>
+<tr>
+<td></td>
+<td>Patch - MOS</td>
+<td>Database Release Update 21.18.0.0.0</td>
+<td>p37655430_210000_Linux-x86-64.zip</td>
+</tr>
+<tr>
+<td></td>
+<td>Patch - MOS</td>
+<td>GI Release Update 21.17.0.0.0</td>
+<td>p37349593_210000_Linux-x86-64.zip</td>
+</tr>
+<tr>
+<td></td>
+<td>Patch - MOS</td>
+<td>GI Release Update 21.18.0.0.0</td>
+<td>p37642955_210000_Linux-x86-64.zip</td>
+</tr>
+<tr>
 <td>19.3.0.0.0</td>
 <td>Base - eDelivery or OTN</td>
 <td>Oracle Database 19.3.0.0.0 for Linux x86-64</td>
@@ -758,6 +795,13 @@ href="https://support.oracle.com/epmos/faces/PatchResultsNDetails?releaseId=6000
 <td>AA</td>
 <td>AA</td>
 <td>AA</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>OPatch Utility</td>
+<td>p6880880_190000_Linux-x86-64.zip</td>
 </tr>
 
 <tr>
@@ -941,6 +985,12 @@ href="https://support.oracle.com/epmos/faces/PatchResultsNDetails?releaseId=6000
 <td>AA</td>
 <td>AA</td>
 <td>AA</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GI Interim Patch</td>
+<td>p25078431_122010_Linux-x86-64.zip</td>
 </tr>
 <tr>
 <td></td>
@@ -2701,6 +2751,7 @@ Specific supported versions of Oracle Database 23 free edition currently include
 |  23ai   |   23.4.0.24.05   | `oracle-database-free-23ai-1.0-1.el8.x86_64.rpm`  | `oracle-database-preinstall-23ai-1.0-2.el8.x86_64.rpm` |
 |   23c   |   23.3.0.23.09   | `oracle-database-free-23c-1.0-1.el8.x86_64.rpm`   | `oracle-database-preinstall-23c-1.0-1.el8.x86_64.rpm`  |
 |   23c   |    23.2.0.0.0    | `oracle-database-free-23c-1.0-1.el8.x86_64.rpm`   | `oracle-database-preinstall-23c-1.0-1.el8.x86_64.rpm`  |
+|   23ai   |    23.8.0.25.04    | `oracle-database-free-23ai-23.8-1.el8.x86_64.rpm`   | `oracle-database-preinstall-23ai-1.0-2.el8.x86_64.rpm`  |
 |   23ai   |    23.8.0.25.04    | `oracle-database-free-23ai-23.8-1.el8.x86_64.rpm`   | `oracle-database-preinstall-23ai-1.0-2.el8.x86_64.rpm`  |
 |   23ai   |    23.8.0.25.04    | `oracle-database-free-23ai-23.8-1.el8.x86_64.rpm`   | `oracle-database-preinstall-23ai-1.0-2.el8.x86_64.rpm`  |
 
