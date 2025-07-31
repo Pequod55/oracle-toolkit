@@ -3,26 +3,26 @@ run-name: Modify Patches
 
 on:
   pull_request:
-    branches: [ "master" ]
+    paths:
+      - '.github/workflows/modify_documentation.py'
+      - '.github/workflows/modify_patches.py'
+      - '/modify_patchlist.yaml'
   workflow_dispatch:
 
 jobs:
-  build:
+  build-and-commit:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout PR Branch
       uses: actions/checkout@v4
       with:
-        # Checkout the head of the PR branch to avoid detached HEAD
         ref: ${{ github.head_ref }}
-        # We need a full history to push, not a shallow clone
-        fetch-depth: 0
 
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.13.5'
-        cache: 'pip'
+        cache: 'pip' # Cache dependencies for faster runs
 
     - name: Install dependencies
       run: |
@@ -35,10 +35,10 @@ jobs:
     - name: Change patch files
       run: python .github/workflows/modify_patches.py
 
-    - name: Commit changes
-      run: bash .github/workflows/commit_patches.bash
-      env:
-        # We pass the PR branch name and repo slug to the script
-        PR_BRANCH: ${{ github.head_ref }}
-        GITHUB_REPO: ${{ github.repository }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Use the default token
+    - name: Commit and push changes
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "automation: Update patch files"
+        commit_user_name: "GitHub Actions"
+        commit_user_email: "actions@github.com"
+        branch: ${{ github.head_ref }}

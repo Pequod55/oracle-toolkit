@@ -70,31 +70,31 @@ documentation_overrides:
   skip_docs_update: false
 
   gi_software:
-#     category: ""
-#     software_piece: ""
-#     file_name: ""
+#     category: "AA"
+#     software_piece: "AA"
+#     file_name: "AA"
 
   rdbms_software:
-#     category: ""
-#     software_piece: ""
-#     file_name: ""
+#     category: "AA"
+#     software_piece: "AA"
+#     file_name: "AA"
 
   opatch_patches:
-#     category: ""
-#     software_piece: ""
-#     file_name: "" 
+#     category: "AA"
+#     software_piece: "AA"
+#     file_name: "AA"
 
   gi_interim_patches:
-#     category: ""
-#     software_piece: ""
-#     file_name: ""
+#     category: "AA"
+#     software_piece: "AA"
+#     file_name: "AA"
 
   gi_patches:
-#     category: ""
-#     software_piece: ""
-#     file_name: "" 
+#     category: "AA"
+#     software_piece: "AA"
+#     file_name: "AA" 
 
   rdbms_patches:
-#     category: ""
-#     software_piece: ""
-#     file_name: ""
+#     category: "AA"
+#     software_piece: "AA"
+#     file_name: "AA"
